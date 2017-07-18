@@ -85,7 +85,7 @@ public extension String {
 		return rangeOfCharacter(from: .letters, options: .numeric, range: nil) != nil
 	}
 	
-	/// SwifterSwift: Check if string contains one or more numbers.
+	/// SwifterSwift: Check if string contains one or more s.
 	public var hasNumbers: Bool {
 		return rangeOfCharacter(from: .decimalDigits, options: .literal, range: nil) != nil
 	}
@@ -211,30 +211,6 @@ public extension String {
 		formatter.timeZone = TimeZone.current
 		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		return formatter.date(from: selfLowercased)
-	}
-	
-	/// SwifterSwift: Double value from string (if applicable).
-	public var double: Double? {
-		let formatter = NumberFormatter()
-		return formatter.number(from: self) as? Double
-	}
-	
-	/// SwifterSwift: Float value from string (if applicable).
-	public var float: Float? {
-		let formatter = NumberFormatter()
-		return formatter.number(from: self) as? Float
-	}
-	
-	/// SwifterSwift: Float32 value from string (if applicable).
-	public var float32: Float32? {
-		let formatter = NumberFormatter()
-		return formatter.number(from: self) as? Float32
-	}
-	
-	/// SwifterSwift: Float64 value from string (if applicable).
-	public var float64: Float64? {
-		let formatter = NumberFormatter()
-		return formatter.number(from: self) as? Float64
 	}
 	
 	/// SwifterSwift: Integer value from string (if applicable).
