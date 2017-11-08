@@ -10,6 +10,14 @@ import XCTest
 @testable import SwifterSwift_Linux
 
 final class BoolExtensionsTests: XCTestCase {
+    static var allTests = [
+      ("testInt", testInt),
+      ("testString", testString),
+      ("testToggled", testToggled),
+      ("testRandom", testRandom),
+          // Other tests go here
+    ]
+
 
 	  func testInt() {
 		    XCTAssertEqual(true.int, 1)
@@ -29,7 +37,7 @@ final class BoolExtensionsTests: XCTestCase {
     func testRandom() {
         var yes = 0, no = 0
         for _ in 1...10000 {
-            if Bool.random {
+            if Bool.rand{
                 yes += 1
             } else {
                 no += 1

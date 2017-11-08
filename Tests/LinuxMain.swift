@@ -4,8 +4,8 @@
 
 
 import XCTest
-@testable import SwiftStdlibTests
+@testable import BoolExtensionsTests
 
 XCTMain([
-           testCase(SwiftStdlibTests.allTests),
-         ])
+          testCase(BoolExtensionsTests.allTests),
+        ])

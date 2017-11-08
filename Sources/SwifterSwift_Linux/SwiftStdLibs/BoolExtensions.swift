@@ -5,7 +5,11 @@
 //  Created by Omar Albeik on 7/18/17.
 //
 //
-
+#if os(Linux)
+  import Glibc
+#else
+  import Darwin.C
+#endif
 
 // MARK: - Properties
 public extension Bool {
@@ -25,11 +29,18 @@ public extension Bool {
 		    return !self
 	  }
 
+    /// SwifterSwift: Returns a random boolean value.
+    ///
+    ///     Bool.random -> true
+    ///     Bool.random -> false
+    ///
+    public static var rand: Bool {
+        return random() == 1
+    }
 }
 
 // MARK: - Methods
 public extension Bool {
-
 	  /// SwifterSwift: Toggle value for bool.
 	  ///
 	  /// - Returns: inversed value of bool.
