@@ -29,7 +29,6 @@ Vagrant.configure(2) do |config|
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y cmake
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ninja-build
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y clang
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y uuid-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libicu-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y icu-devtools
@@ -53,7 +52,7 @@ Vagrant.configure(2) do |config|
     cd /vagrant && mkdir -p swift-dev && cd swift-dev
     echo "Cloning swift from GitHub..."
     if [ ! -d "swift" ]; then
-      su -c 'git clone https://github.com/apple/swift.git ~/.swiftenv' vagrant
+      su -c 'git clone https://github.com/apple/swift.git /home/vagrant/.swiftenv' vagrant
     fi
     echo "Finished setting up development environment - run 'vagrant ssh' to connect,"
   SHELL
