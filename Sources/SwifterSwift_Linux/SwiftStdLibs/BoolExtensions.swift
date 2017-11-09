@@ -39,7 +39,7 @@ public extension Bool {
         let current = Date().timeIntervalSinceReferenceDate
         let salt = current.truncatingRemainder(dividingBy: 1) * 100000000
         srand(UInt32(current + salt))
-        return random() % 100 == 1
+        return random() % 2 == 1
     }
 }
 
