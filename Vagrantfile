@@ -3,8 +3,7 @@
 
 Vagrant.configure(2) do |config|
   # Swift development targets Ubuntu 15.10
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "ubuntu/xenial64"
   config.vm.define "swift-dev" do |swiftdev|
   end
 
@@ -37,8 +36,6 @@ Vagrant.configure(2) do |config|
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libbsd-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libedit-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libxml2-dev
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libsqlite3-dev
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y swig
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libpython-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libncurses5-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y pkg-config
@@ -58,8 +55,6 @@ Vagrant.configure(2) do |config|
     if [ ! -d "swift" ]; then
       su -c 'git clone https://github.com/apple/swift.git ~/.swiftenv' vagrant
     fi
-    su -c "echo 'export SWIFTENV_ROOT="home/vagrant/.swiftenv"' >> ~/.bash_profile" vagrant
-    su -c "echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.bash_profile" vagrant
     echo "Finished setting up development environment - run 'vagrant ssh' to connect,"
   SHELL
 end

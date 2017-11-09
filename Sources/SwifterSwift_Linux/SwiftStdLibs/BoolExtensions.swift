@@ -10,6 +10,7 @@
 #else
   import Darwin.C
 #endif
+import Foundation
 
 // MARK: - Properties
 public extension Bool {
@@ -35,7 +36,10 @@ public extension Bool {
     ///     Bool.random -> false
     ///
     public static var rand: Bool {
-        return random() == 1
+        let current = Date().timeIntervalSinceReferenceDate
+        let salt = current.truncatingRemainder(dividingBy: 1) * 100000000
+        srand(UInt32(current + salt))
+        return random() % 100 == 1
     }
 }
 
