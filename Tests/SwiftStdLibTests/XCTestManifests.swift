@@ -1,9 +1,6 @@
-
-
 import XCTest
 
-public func allTests() -> [XCTestCaseEntry] {
-    return [
-      testCase(BoolExtensionsTests.allTests),
-    ]
-}
+public struct SwiftStdLibTests {
+    static var allTests = []
+      + BoolExtensionsTests.allTests
+ }
