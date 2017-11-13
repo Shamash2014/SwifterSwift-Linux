@@ -48,12 +48,6 @@ Vagrant.configure(2) do |config|
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y pkg-config
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libblocksruntime-dev
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libbsd-dev
-    # Create development directory
-    cd /vagrant && mkdir -p swift-dev && cd swift-dev
-    echo "Cloning swift from GitHub..."
-    if [ ! -d "swift" ]; then
-      su -c 'git clone https://github.com/apple/swift.git /home/vagrant/.swiftenv' vagrant
-    fi
     echo "Finished setting up development environment - run 'vagrant ssh' to connect,"
   SHELL
 end

@@ -10,6 +10,7 @@ import XCTest
 @testable import SwifterSwift_Linux
 
 final class BoolExtensionsTests: XCTestCase {
+    // Special variable defining all tests on Linux
     static var allTests = [
       ("testInt", testInt),
       ("testString", testString),
