@@ -2,8 +2,11 @@ language: generic
 sudo: required
 dist: trusty
 
+env:
+  - SWIFT_VERSION=4.0
+
 install:
   - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 script:
-  - swiftenv install https://swift.org/builds/swift-4.0-branch/ubuntu1404/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-07-a/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-07-a-ubuntu14.04.tar.gz
   - swift build
+  - swift test

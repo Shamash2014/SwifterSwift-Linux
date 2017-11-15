@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 #if os(Linux)
 	import Glibc
 #else
@@ -17,7 +16,7 @@ import Foundation
 
 // MARK: - Properties
 public extension String {
-	
+
 	/// SwifterSwift: String decoded from base64 (if applicable).
 	public var base64Decoded: String? {
 		// https://github.com/Reza-Rg/Base64-Swift-Extension/blob/master/Base64.swift
@@ -26,19 +25,19 @@ public extension String {
 		}
 		return String(data: decodedData, encoding: .utf8)
 	}
-	
+
 	/// SwifterSwift: String encoded in base64 (if applicable).
 	public var base64Encoded: String? {
 		// https://github.com/Reza-Rg/Base64-Swift-Extension/blob/master/Base64.swift
 		let plainData = data(using: .utf8)
 		return plainData?.base64EncodedString()
 	}
-	
+
 	/// SwifterSwift: Array of characters of a string.
 	public var charactersArray: [Character] {
 		return Array(characters)
 	}
-	
+
 	/// SwifterSwift: CamelCase of string.
 	public var camelCased: String {
 		let source = lowercased()
@@ -48,12 +47,12 @@ public extension String {
 			let rest = String(camel.characters.dropFirst())
 			return first + rest
 		}
-		
+
 		let first = source.lowercased().substring(to: source.index(after: source.startIndex))
 		let rest = String(source.characters.dropFirst())
 		return first + rest
 	}
-	
+
 	/// SwifterSwift: Check if string contains one or more emojis.
 	public var containEmoji: Bool {
 		// http://stackoverflow.com/questions/30757193/find-out-if-character-in-string-is-emoji
@@ -71,7 +70,7 @@ public extension String {
 		}
 		return false
 	}
-	
+
 	/// SwifterSwift: First character of string (if applicable).
 	public var firstCharacter: String? {
 		guard let first = characters.first else {
@@ -79,32 +78,32 @@ public extension String {
 		}
 		return String(first)
 	}
-	
+
 	/// SwifterSwift: Check if string contains one or more letters.
 	public var hasLetters: Bool {
 		return rangeOfCharacter(from: .letters, options: .numeric, range: nil) != nil
 	}
-	
+
 	/// SwifterSwift: Check if string contains one or more s.
 	public var hasNumbers: Bool {
 		return rangeOfCharacter(from: .decimalDigits, options: .literal, range: nil) != nil
 	}
-	
+
 	/// SwifterSwift: Check if string contains only letters.
 	public var isAlphabetic: Bool {
 		return hasLetters && !hasNumbers
 	}
-	
+
 	/// SwifterSwift: Check if string contains at least one letter and one number.
 	public var isAlphaNumeric: Bool {
 		return components(separatedBy: CharacterSet.alphanumerics).joined(separator: "").characters.count == 0 && hasLetters && hasNumbers
 	}
-	
+
 	/// SwifterSwift: Check if string is a valid URL.
 	public var isValidUrl: Bool {
 		return URL(string: self) != nil
 	}
-	
+
 	/// SwifterSwift: Check if string is a valid schemed URL.
 	public var isValidSchemedUrl: Bool {
 		guard let url = URL(string: self) else {
@@ -112,7 +111,7 @@ public extension String {
 		}
 		return url.scheme != nil
 	}
-	
+
 	/// SwifterSwift: Check if string is a valid https URL.
 	public var isValidHttpsUrl: Bool {
 		guard let url = URL(string: self) else {
@@ -120,7 +119,7 @@ public extension String {
 		}
 		return url.scheme == "https"
 	}
-	
+
 	/// SwifterSwift: Check if string is a valid http URL.
 	public var isValidHttpUrl: Bool {
 		guard let url = URL(string: self) else {
@@ -128,17 +127,17 @@ public extension String {
 		}
 		return url.scheme == "http"
 	}
-	
+
 	/// SwifterSwift: Check if string is a valid file URL.
 	public var isValidFileUrl: Bool {
 		return URL(string: self)?.isFileURL ?? false
 	}
-	
+
 	/// SwifterSwift: Check if string contains only numbers.
 	public var isNumeric: Bool {
 		return  !hasLetters && hasNumbers
 	}
-	
+
 	/// SwifterSwift: Last character of string (if applicable).
 	public var lastCharacter: String? {
 		guard let last = characters.last else {
@@ -146,17 +145,17 @@ public extension String {
 		}
 		return String(last)
 	}
-	
+
 	/// SwifterSwift: Latinized string.
 	public var latinized: String {
 		return folding(options: .diacriticInsensitive, locale: Locale.current)
 	}
-	
+
 	/// SwifterSwift: Number of characters in string.
 	public var length: Int {
 		return characters.count
 	}
-	
+
 	/// SwifterSwift: Array of strings separated by new lines.
 	public var lines: [String] {
 		var result = [String]()
@@ -165,7 +164,7 @@ public extension String {
 		}
 		return result
 	}
-	
+
 	/// SwifterSwift: The most common character in string.
 	public var mostCommonCharacter: String {
 		let mostCommon = withoutSpacesAndNewLines.characters.reduce([Character: Int]()) {
@@ -178,12 +177,12 @@ public extension String {
 		}
 		return String(char)
 	}
-	
+
 	/// SwifterSwift: Reversed string.
 	public var reversed: String {
 		return String(characters.reversed())
 	}
-	
+
 	/// SwifterSwift: Bool value from string (if applicable).
 	public var bool: Bool? {
 		let selfLowercased = trimmed.lowercased()
@@ -194,7 +193,7 @@ public extension String {
 		}
 		return nil
 	}
-	
+
 	/// SwifterSwift: Date object from "yyyy-MM-dd" formatted string
 	public var date: Date? {
 		let selfLowercased = trimmed.lowercased()
@@ -203,7 +202,7 @@ public extension String {
 		formatter.dateFormat = "yyyy-MM-dd"
 		return formatter.date(from: selfLowercased)
 	}
-	
+
 	/// SwifterSwift: Date object from "yyyy-MM-dd HH:mm:ss" formatted string.
 	public var dateTime: Date? {
 		let selfLowercased = trimmed.lowercased()
@@ -212,60 +211,60 @@ public extension String {
 		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 		return formatter.date(from: selfLowercased)
 	}
-	
+
 	/// SwifterSwift: Integer value from string (if applicable).
 	public var int: Int? {
 		return Int(self)
 	}
-	
+
 	/// SwifterSwift: Int16 value from string (if applicable).
 	public var int16: Int16? {
 		return Int16(self)
 	}
-	
+
 	/// SwifterSwift: Int32 value from string (if applicable).
 	public var int32: Int32? {
 		return Int32(self)
 	}
-	
+
 	/// SwifterSwift: Int64 value from string (if applicable).
 	public var int64: Int64? {
 		return Int64(self)
 	}
-	
+
 	/// SwifterSwift: Int8 value from string (if applicable).
 	public var int8: Int8? {
 		return Int8(self)
 	}
-	
+
 	/// SwifterSwift: URL from string (if applicable).
 	public var url: URL? {
 		return URL(string: self)
 	}
-	
+
 	/// SwifterSwift: String with no spaces or new lines in beginning and end.
 	public var trimmed: String {
 		return trimmingCharacters(in: .whitespacesAndNewlines)
 	}
-	
+
 	/// SwifterSwift: Array with unicodes for all characters in a string.
 	public var unicodeArray: [Int] {
 		return unicodeScalars.map({$0.hashValue})
 	}
-	
+
 	/// SwifterSwift: Readable string from a URL string.
 	public var urlDecoded: String {
 		return removingPercentEncoding ?? self
 	}
-	
+
 	/// SwifterSwift: URL escaped string.
 	public var urlEncoded: String {
 		return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 	}
-	
+
 	/// SwifterSwift: String without spaces and new lines.
 	public var withoutSpacesAndNewLines: String {
 		return replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
 	}
-	
+
 }
