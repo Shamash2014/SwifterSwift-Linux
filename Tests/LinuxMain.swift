@@ -5,6 +5,7 @@
 import XCTest
 @testable import SwiftStdLibTests
 
-XCTMain([
-          testCase(SwiftStdLibTests.allTests)
-        ])
+var tests = [XCTestCaseEntry]()
+tests += SwiftStdLibTests.allTests()
+
+XCTMain(tests)
