@@ -40,17 +40,28 @@ public extension String {
 
 	/// SwifterSwift: CamelCase of string.
 	public var camelCased: String {
-		let source = lowercased()
-		if source.characters.contains(" ") {
-			let first = source.substring(to: source.index(after: source.startIndex))
-			let camel = source.uppercased().replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
-			let rest = String(camel.characters.dropFirst())
-			return first + rest
-		}
 
-		let first = source.lowercased().substring(to: source.index(after: source.startIndex))
-		let rest = String(source.characters.dropFirst())
-		return first + rest
+      let source = lowercased()
+		  let first = source[..<source.index(after: source.startIndex)]
+		  if source.contains(" ") {
+			    let connected = source.capitalized.replacingOccurrences(of: " ", with: "")
+			    let camel = connected.replacingOccurrences(of: "\n", with: "")
+			    let rest = String(camel.dropFirst())
+			    return first + rest
+		  }
+		  let rest = String(source.dropFirst())
+		  return first + rest
+	}
+
+	/// SwifterSwift: Converts string format to CamelCase.
+	///
+	///		var str = "sOme vaRiabLe Name"
+	///		str.camelize()
+	///		print(str) // prints "someVariableName"
+	///
+
+  public mutating func camelize() {
+		  self = camelCased
 	}
 
 	/// SwifterSwift: Check if string contains one or more emojis.
