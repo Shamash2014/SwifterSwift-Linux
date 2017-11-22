@@ -7,7 +7,11 @@ final class StringExtensionsTests: XCTestCase {
       ("testBase64Encoded", testBase64Encoded),
       ("testCharactersArray", testCharactersArray),
       ("testCamelCased", testCamelCased),
-      ("testCamelize", testCamelize)
+      ("testCamelize", testCamelize),
+      ("testContain", testContain),
+      ("testContainEmoji", testContainEmoji),
+      ("testCount", testCount),
+      ("testEnd", testEnd)
     ]
 
 	  override func setUp() {
@@ -40,4 +44,28 @@ final class StringExtensionsTests: XCTestCase {
 		    str.camelize()
 		    XCTAssertEqual(str, "helloTest")
 	  }
+
+    func testContain() {
+		    XCTAssert("Hello Tests".contains("Hello", caseSensitive: true))
+		    XCTAssert("Hello Tests".contains("hello", caseSensitive: false))
+	  }
+
+	  func testContainEmoji() {
+		    XCTAssert("Hello 😂".containEmoji)
+		    XCTAssertFalse("Hello ;)".containEmoji)
+	  }
+
+	  func testCount() {
+		    XCTAssertEqual("Hello This Tests".count(of: "T"), 2)
+		    XCTAssertEqual("Hello This Tests".count(of: "t"), 1)
+		    XCTAssertEqual("Hello This Tests".count(of: "T", caseSensitive: false), 3)
+		    XCTAssertEqual("Hello This Tests".count(of: "t", caseSensitive: false), 3)
+
+	  }
+
+	  func testEnd() {
+		    XCTAssert("Hello Test".ends(with: "test", caseSensitive: false))
+		    XCTAssert("Hello Tests".ends(with: "sts"))
+	  }
+
 }

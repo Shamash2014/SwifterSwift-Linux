@@ -65,23 +65,26 @@ public extension String {
 	}
 
 	/// SwifterSwift: Check if string contains one or more emojis.
+	///
+	///		"Hello 😀".containEmoji -> true
+	///
 	public var containEmoji: Bool {
-		// http://stackoverflow.com/questions/30757193/find-out-if-character-in-string-is-emoji
-		for scalar in unicodeScalars {
-			switch scalar.value {
-			case 0x3030, 0x00AE, 0x00A9, // Special Characters
-			0x1D000...0x1F77F, // Emoticons
-			0x2100...0x27BF, // Misc symbols and Dingbats
-			0xFE00...0xFE0F, // Variation Selectors
-			0x1F900...0x1F9FF: // Supplemental Symbols and Pictographs
-				return true
-			default:
-				continue
-			}
-		}
-		return false
+		  // http://stackoverflow.com/questions/30757193/find-out-if-character-in-string-is-emoji
+		  for scalar in unicodeScalars {
+			    switch scalar.value {
+			    case 0x3030, 0x00AE, 0x00A9, // Special Characters
+			         0x1D000...0x1F77F, // Emoticons
+			         0x2100...0x27BF, // Misc symbols and Dingbats
+			         0xFE00...0xFE0F, // Variation Selectors
+			         0x1F900...0x1F9FF: // Supplemental Symbols and Pictographs
+				      return true
+			    default:
+				      continue
+			    }
+		  }
+		  return false
 	}
-
+	
 	/// SwifterSwift: First character of string (if applicable).
 	public var firstCharacter: String? {
 		guard let first = characters.first else {
@@ -278,4 +281,51 @@ public extension String {
 		return replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
 	}
 
+  /// SwifterSwift: Check if string contains one or more instance of substring.
+	///
+	///		"Hello World!".contain("O") -> false
+	///		"Hello World!".contain("o", caseSensitive: false) -> true
+	///
+	/// - Parameters:
+	///   - string: substring to search for.
+	///   - caseSensitive: set true for case sensitive search (default is true).
+	/// - Returns: true if string contains one or more instance of substring.
+	public func contains(_ string: String, caseSensitive: Bool = true) -> Bool {
+		  if !caseSensitive {
+			    return range(of: string, options: .caseInsensitive) != nil
+		  }
+		  return range(of: string) != nil
+	}
+
+  /// SwifterSwift: Check if string ends with substring.
+	///
+	///		"Hello World!".ends(with: "!") -> true
+	///		"Hello World!".ends(with: "WoRld!", caseSensitive: false) -> true
+	///
+	/// - Parameters:
+	///   - suffix: substring to search if string ends with.
+	///   - caseSensitive: set true for case sensitive search (default is true).
+	/// - Returns: true if string ends with substring.
+	public func ends(with suffix: String, caseSensitive: Bool = true) -> Bool {
+		  if !caseSensitive {
+			    return lowercased().hasSuffix(suffix.lowercased())
+		  }
+		  return hasSuffix(suffix)
+	}
+
+	/// SwifterSwift: Count of substring in string.
+	///
+	///		"Hello World!".count(of: "o") -> 2
+	///		"Hello World!".count(of: "L", caseSensitive: false) -> 3
+	///
+	/// - Parameters:
+	///   - string: substring to search for.
+	///   - caseSensitive: set true for case sensitive search (default is true).
+	/// - Returns: count of appearance of substring in string.
+	public func count(of string: String, caseSensitive: Bool = true) -> Int {
+		  if !caseSensitive {
+			    return lowercased().components(separatedBy: string.lowercased()).count - 1
+		  }
+		  return components(separatedBy: string).count - 1
+	}
 }
