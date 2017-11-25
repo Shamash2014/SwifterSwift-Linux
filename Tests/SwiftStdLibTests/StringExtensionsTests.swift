@@ -11,7 +11,11 @@ final class StringExtensionsTests: XCTestCase {
       ("testContain", testContain),
       ("testContainEmoji", testContainEmoji),
       ("testCount", testCount),
-      ("testEnd", testEnd)
+      ("testEnd", testEnd),
+      ("testFirstCharacter", testFirstCharacter),
+	    ("testHasLetters", testHasLetters),
+	    ("testHasNumbers", testHasNumbers),
+	    ("testIsAlphabetic", testIsAlphabetic)
     ]
 
 	  override func setUp() {
