@@ -68,4 +68,28 @@ final class StringExtensionsTests: XCTestCase {
 		    XCTAssert("Hello Tests".ends(with: "sts"))
 	  }
 
+    func testFirstCharacter() {
+		    XCTAssertNil("".firstCharacterAsString)
+		    XCTAssertNotNil("Hello".firstCharacterAsString)
+		    XCTAssertEqual("Hello".firstCharacterAsString, "H")
+	  }
+
+	  func testHasLetters() {
+		    XCTAssert("hsj 1 wq3".hasLetters)
+		    XCTAssertFalse("123".hasLetters)
+		    XCTAssert("Hello test".hasLetters)
+	  }
+
+	  func testHasNumbers() {
+		    XCTAssert("hsj 1 wq3".hasNumbers)
+		    XCTAssert("123".hasNumbers)
+		    XCTAssertFalse("Hello test".hasNumbers)
+	  }
+
+	  func testIsAlphabetic() {
+		    XCTAssert("abc".isAlphabetic)
+		    XCTAssertFalse("123abc".isAlphabetic)
+		    XCTAssertFalse("123".isAlphabetic)
+	  }
+
 }

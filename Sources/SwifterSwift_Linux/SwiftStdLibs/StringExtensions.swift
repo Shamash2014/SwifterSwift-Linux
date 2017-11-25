@@ -86,11 +86,15 @@ public extension String {
 	}
 	
 	/// SwifterSwift: First character of string (if applicable).
-	public var firstCharacter: String? {
-		guard let first = characters.first else {
-			return nil
-		}
-		return String(first)
+	///
+	///		"Hello".firstCharacterAsString -> Optional("H")
+	///		"".firstCharacterAsString -> nil
+	///
+	public var firstCharacterAsString: String? {
+		  guard let first = self.first else {
+			    return nil
+		  }
+		  return String(first)
 	}
 
 	/// SwifterSwift: Check if string contains one or more letters.
