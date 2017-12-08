@@ -112,6 +112,22 @@ public extension String {
 		return hasLetters && !hasNumbers
 	}
 
+  public var isEmail: Bool {
+		  // http://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift
+		  return matches(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
+	}
+
+  // SwifterSwift: Verify if string matches the regex pattern.
+	///
+	/// - Parameter pattern: Pattern to verify.
+	/// - Returns: true if string matches the pattern.
+
+  public func matches(pattern: String) -> Bool {
+		  return range(of: pattern,
+		               options: String.CompareOptions.regularExpression,
+		               range: nil, locale: nil) != nil
+	}
+
 	/// SwifterSwift: Check if string contains at least one letter and one number.
 	public var isAlphaNumeric: Bool {
 		return components(separatedBy: CharacterSet.alphanumerics).joined(separator: "").characters.count == 0 && hasLetters && hasNumbers

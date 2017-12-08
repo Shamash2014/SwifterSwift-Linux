@@ -96,4 +96,42 @@ final class StringExtensionsTests: XCTestCase {
 		    XCTAssertFalse("123".isAlphabetic)
 	  }
 
+
+    func testIsAlphaNumeric() {
+        XCTAssert("123abc".isAlphaNumeric)
+        XCTAssertFalse("123".isAlphaNumeric)
+        XCTAssertFalse("abc".isAlphaNumeric)
+      }
+
+      func testIsEmail() {
+        XCTAssert("omaralbeik@gmail.com".isEmail)
+        XCTAssertFalse("omaralbeik@gmailcom".isEmail)
+        XCTAssertFalse("omaralbeikgmail.com".isEmail)
+      }
+
+      func testIsValidUrl() {
+        XCTAssert("https://google.com".isValidUrl)
+        XCTAssert("http://google.com".isValidUrl)
+        XCTAssert("ftp://google.com".isValidUrl)
+      }
+
+      func testIsValidSchemedUrl() {
+        XCTAssertFalse("Hello world!".isValidSchemedUrl)
+        XCTAssert("https://google.com".isValidSchemedUrl)
+        XCTAssert("ftp://google.com".isValidSchemedUrl)
+        XCTAssertFalse("google.com".isValidSchemedUrl)
+      }
+
+      func testIsValidHttpsUrl() {
+        XCTAssertFalse("Hello world!".isValidHttpsUrl)
+        XCTAssert("https://google.com".isValidHttpsUrl)
+        XCTAssertFalse("http://google.com".isValidHttpsUrl)
+        XCTAssertFalse("google.com".isValidHttpsUrl)
+      }
+
+      func testIsValidHttpUrl() {
+        XCTAssertFalse("Hello world!".isValidHttpUrl)
+        XCTAssert("http://google.com".isValidHttpUrl)
+        XCTAssertFalse("google.com".isValidHttpUrl)
+      }
 }
